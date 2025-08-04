@@ -1,0 +1,174 @@
+definitions:
+  schemas.EditUser:
+    properties:
+      age:
+        type: integer
+      emails:
+        items:
+          type: string
+        type: array
+      gender:
+        type: string
+      name:
+        type: string
+      nationalize:
+        type: string
+      surname:
+        type: string
+    type: object
+  schemas.NewUser:
+    properties:
+      emails:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+      surname:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/users/{id}/edit_user:
+    put:
+      consumes:
+      - application/json
+      description: Изменить пользователя
+      parameters:
+      - description: id пользователя
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Данные для редактирования
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/schemas.EditUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Изменить пользователя
+      tags:
+      - example
+  /api/users/{id}/get_user:
+    get:
+      consumes:
+      - application/json
+      description: Получить данные пользователя по id
+      parameters:
+      - description: id пользователя
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получить данные пользователя по id
+      tags:
+      - example
+  /api/users/add_user:
+    post:
+      consumes:
+      - application/json
+      description: Добавить пользователя
+      parameters:
+      - description: Данные пользователя
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/schemas.NewUser'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Добавить пользователя
+      tags:
+      - example
+  /api/users/get_all:
+    get:
+      consumes:
+      - application/json
+      description: Получить всех пользователей
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получить всех пользователей
+      tags:
+      - example
+  /api/users/get_by_surname/{surname}:
+    get:
+      consumes:
+      - application/json
+      description: Получить данные пользователя по фамилии
+      parameters:
+      - description: Фамилия пользователя
+        in: path
+        name: surname
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      summary: Получить данные пользователя по фамилии
+      tags:
+      - example
+swagger: "2.0"

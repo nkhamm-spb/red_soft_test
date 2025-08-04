@@ -2,8 +2,8 @@ package httphandlers
 
 import (
 	"encoding/json"
-	"net/http"
 	"log"
+	"net/http"
 
 	"github.com/nkhamm-spb/red_soft_test/storage"
 )

@@ -26,7 +26,7 @@ func main() {
 	}
 
 	server, err := httpserver.New(context.Background(), storage, &config.Server)
-	
+
 	if err != nil {
 		log.Fatalf("Error occur on create server: %v", err)
 	}
@@ -36,19 +36,19 @@ func main() {
 
 	go func() {
 		if err := server.Run(); err != nil {
-			log.Fatalf("failed to serve server")
+			log.Fatalf("Failed to serve server")
 		}
 	}()
 
-	log.Println("server started")
+	log.Println("Server started")
 
 	<-done
 	log.Println("stopping server")
 
 	if err := server.Shutdown(); err != nil {
-		log.Fatalf("failed to stop server: %v", err)
+		log.Fatalf("Failed to stop server: %v", err)
 		return
 	}
 
-	log.Println("server stopped")
+	log.Println("Server stopped")
 }
